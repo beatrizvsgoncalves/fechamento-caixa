@@ -1,0 +1,32 @@
+import { useState } from 'react';
+import NewSaleForm from './components/NewSaleForm/NewSaleForm';
+import ContainerSales from './components/ContainerSales/ContainerSales';
+import useSaleList from './hooks/useSaleList';
+
+export default function App() {
+  const { sales, setSales, addSale, setId } = useSaleList()
+  const [ showContainer, setShowContainer ] = useState(false)
+
+  function clearStorage() {
+    if (confirm('Quer realmente excluir as vendas cadastradas?')) {
+      localStorage.clear()
+      alert('Vendas resetas!')
+      setId(1)
+      setSales([])  
+      setShowContainer(false)
+    }
+  }
+
+  return (
+    <>
+      <header>
+        <h1>Fechamento de caixa</h1>
+      </header>
+      <main>
+        <button onClick={clearStorage} className='resetBtn'>Resetar vendas cadastradas</button>
+        {!showContainer && <NewSaleForm addSale={addSale} onSubmitForm={() => setShowContainer(true)} sales={sales} />}
+        {showContainer && <ContainerSales sales={sales}/>}
+      </main>
+    </>
+  )
+}

@@ -1,0 +1,67 @@
+.form {
+  background-color: #000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: auto;
+  margin-top: 2rem;
+  max-width: 25rem;
+  padding: 2rem;
+}
+
+.form-field {
+  display: flex;
+  gap: .5rem;
+  flex-direction: column;
+}
+
+.delivery {
+  background-color: #0f0f0f;
+  border-radius: 5px;
+  padding: 1rem;
+}
+.delivery p {
+  margin: 0;
+  margin-bottom: .3rem;
+}
+.delivery input {
+  margin-right: 1rem;
+}
+
+.container-delivers {
+  margin-bottom: 1rem;
+}
+
+.checkboxDeliver {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+.checkboxDeliver input {
+  width: 1rem;
+}
+
+.addNewDeliver {
+  background-color: #0f0f0f;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.form button {
+  background-color: #646cff;
+  margin-top: 2rem;
+  transition: background-color .2s;
+}
+.form button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.form button[type=submit] {
+  background-color: #1a1a1a;
+  color: #fff;
+}
