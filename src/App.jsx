@@ -27,6 +27,10 @@ export default function App() {
         {!showContainer && <NewSaleForm addSale={addSale} onSubmitForm={() => setShowContainer(true)} sales={sales} />}
         {showContainer && <ContainerSales sales={sales}/>}
       </main>
+      <footer>
+        <a href="https://www.flaticon.com/br/icones-gratis/verificacao-de-saida" title="verificação de saída ícones">Verificação de saída ícones criados por Freepik - Flaticon</a>
+        <div><a href="https://github.com/beatrizvsgoncalves" target='_blank'>Coded by Beatriz Gonçalves</a></div>
+      </footer>
     </>
   )
 }
