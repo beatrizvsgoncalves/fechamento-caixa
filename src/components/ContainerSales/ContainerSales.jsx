@@ -15,14 +15,14 @@ export default function ContainerSales({sales}) {
       { sales.length > 0 
         ? (
           <div className='total-sales'>
-            <p>Total de vendas <span className="values">{totalSales}</span></p>
+            <p className='total-value'>Total de vendas <span className="values">{totalSales}</span></p>
             <p>Pagamento em Pix <span className="values">{payment.pix}</span></p>
             <p>Pagamento em Cartão <span className="values">{payment.card}</span></p>
             <p>Pagamento em Dinheiro <span className="values">{payment.cash}</span></p>
             { delivers && 
               Object.entries(delivers).map(([deliver, rate]) => (
                 <p key={deliver}>
-                  {deliver} 
+                  Entregador: {deliver} 
                   <span className="values">
                     {rate.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                   </span>
