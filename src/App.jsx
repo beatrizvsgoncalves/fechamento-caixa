@@ -10,7 +10,7 @@ export default function App() {
   function clearStorage() {
     if (confirm('Quer realmente excluir as vendas cadastradas?')) {
       localStorage.clear()
-      alert('Vendas resetas!')
+      alert('Vendas excluídas!')
       setId(1)
       setSales([])  
       setShowContainer(false)
