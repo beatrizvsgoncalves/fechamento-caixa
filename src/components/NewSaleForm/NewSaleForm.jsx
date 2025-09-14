@@ -12,7 +12,6 @@ export default function NewSaleForm({ addSale, onSubmitForm, sales }) {
 	const [showDeliver, setShowDeliver] = useState(false);
 	const [delivers, setDelivers] = useState([]);
 
-
 	const handleAddDeliver = () => {
 		if (deliverName && !delivers.includes(deliverName)) {
 			setDelivers([...delivers, deliverName]);
@@ -21,10 +20,13 @@ export default function NewSaleForm({ addSale, onSubmitForm, sales }) {
 		}
 	};
 	
-	const handleClick = () => {
+	const handleNewSale = () => {
 		if (saleValue === '' || payment === '') {
 			alert('Preencha pelo menos o valor e a forma de pagamento!');
 			return;
+		} else if (selectedDeliver && deliverRate === '') {
+			alert('Há um entregador selecionado. Por favor, insira a taxa de entrega!')
+			return
 		}
     
     let msg = `Adicionar venda?\n - Venda total: ${saleValue}\n - Forma de pagamento: ${payment}\n` 
@@ -38,7 +40,7 @@ export default function NewSaleForm({ addSale, onSubmitForm, sales }) {
 			setSaleValue('');
 			setPayment('');
 			setDeliverRate('');
-			setShowDeliver(true);
+			setShowDeliver(false);
 		} else {
 			alert('Cancelado!');
 		}
@@ -85,14 +87,18 @@ export default function NewSaleForm({ addSale, onSubmitForm, sales }) {
 				<div className='delivery'>
 					<p>Entregador:</p>
 					<div className='container-delivers'>
+						<div>
+							<input type="radio" name="delivers" id="noneDeliver" value='Nenhum' />
+							<label htmlFor='noneDeliver'>Nenhum</label>
+						</div>
 						{
 							delivers.map((deliver) => (
 								<div key={deliver}>
 									<input
 										type="radio"
 										id={deliver}
+										name='delivers'
 										value={deliver}
-										checked={selectedDeliver === deliver}
 										onChange={() => setSelectedDeliver(deliver)}
 										/>
 									<label htmlFor={deliver}>{deliver}</label>
@@ -100,13 +106,15 @@ export default function NewSaleForm({ addSale, onSubmitForm, sales }) {
 							))
 						}
 					</div>
-					<InputTextNumber
+					{ selectedDeliver !== '' &&
+						<InputTextNumber
 						id='deliverRate'
 						label='Valor da taxa:'
 						type='number'
 						value={deliverRate}
 						setValue={setDeliverRate}
-					/>
+						/>
+					}
 				</div>
 				: null
 			}
@@ -129,7 +137,7 @@ export default function NewSaleForm({ addSale, onSubmitForm, sales }) {
 				</div>
 			) : null}
 
-			<button type='button' onClick={handleClick}>Adicionar Venda</button>
+			<button type='button' onClick={handleNewSale}>Adicionar Venda</button>
 
 			<button type='submit'>Fechar Caixa</button>
 		</form>
