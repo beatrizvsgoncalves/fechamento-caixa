@@ -6,13 +6,15 @@ import useSaleList from './hooks/useSaleList';
 export default function App() {
   const { sales, setSales, addSale, setId } = useSaleList()
   const [ showContainer, setShowContainer ] = useState(false)
+  const [ delivers, setDelivers ] = useState([]);
 
   function clearStorage() {
-    if (confirm('Quer realmente excluir as vendas cadastradas?')) {
+    if (confirm('Quer realmente excluir tudo registrado?')) {
       localStorage.clear()
-      alert('Vendas excluídas!')
+      alert('Caixa limpo!')
       setId(1)
       setSales([])  
+      setDelivers([])
       setShowContainer(false)
     }
   }
@@ -23,8 +25,16 @@ export default function App() {
         <h1>Fechamento de caixa</h1>
       </header>
       <main>
-        <button onClick={clearStorage} className='resetBtn'>Resetar vendas cadastradas</button>
-        {!showContainer && <NewSaleForm addSale={addSale} onSubmitForm={() => setShowContainer(true)} sales={sales} />}
+        <button onClick={clearStorage} className='resetBtn'>Limpar caixa</button>
+        {!showContainer && 
+          <NewSaleForm 
+            addSale={addSale} 
+            onSubmitForm={() => setShowContainer(true)} 
+            sales={sales} 
+            delivers={delivers}
+            setDelivers={setDelivers}
+          />
+        }
         {showContainer && <ContainerSales sales={sales}/>}
       </main>
       <footer>

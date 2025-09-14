@@ -3,14 +3,13 @@ import './index.css';
 import InputTextNumber from '../InputTextNumber/InputTextNumber';
 import InputCheckbox from '../InputCheckbox/InputCheckbox';
 
-export default function NewSaleForm({ addSale, onSubmitForm, sales }) {
+export default function NewSaleForm({ addSale, onSubmitForm, sales, delivers, setDelivers }) {
 	const [saleValue, setSaleValue] = useState('');
 	const [payment, setPayment] = useState('');
 	const [deliverName, setDeliverName] = useState('');
 	const [deliverRate, setDeliverRate] = useState('');
 	const [selectedDeliver, setSelectedDeliver] = useState('')
 	const [showDeliver, setShowDeliver] = useState(false);
-	const [delivers, setDelivers] = useState([]);
 
 	const handleAddDeliver = () => {
 		if (deliverName && !delivers.includes(deliverName)) {
